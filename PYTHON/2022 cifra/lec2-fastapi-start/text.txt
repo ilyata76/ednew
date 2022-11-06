@@ -1,0 +1,34 @@
+2 библио на старте:
+    fastapi
+    uvicorn
+
+Для запуска приложения FastAPI используют uvicorn
+
+uvicorn main:app --reload
+--reload  будет обновлять в прямом эфире
+
+
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/world
+http://127.0.0.1:8000/hello
+
+    по умолчанию оно делает:
+    http://127.0.0.1:8000/openapi.json
+
+SWAGGER по умолчанию:    
+    http://127.0.0.1:8000/docs
+
+И ещё один тоже:
+    http://127.0.0.1:8000/redoc
+
+
+@app.get("/print") 
+def print_something(s : str) : # запрос типа http://127.0.0.1:8000/print?s=kak%20tvoi%20dela%3F
+    return {"msg" : f"Печатаю что-то {s}"} 
+
+@app.get(path="/hello",
+    tags=['hello'],
+    name='Печатай Hello, world!',
+    description='Возвращает типовое приветствие'
+    )
+

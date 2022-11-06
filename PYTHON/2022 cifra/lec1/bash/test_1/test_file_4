@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Hello, world"
+# указали, что данная программа это шелл-скриптless, head, tail
