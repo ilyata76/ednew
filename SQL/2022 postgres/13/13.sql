@@ -1,0 +1,1 @@
+COPY products.id TO '/products.csv' WITH (DELIMITER ';', FORMAT CSV, HEADER); -- Excel прочитает
