@@ -1,0 +1,47 @@
+<   SecurityList  >
+<!--Тип ЦБ: 1 - Акция, 2 - Облигация, 3 - Деп. сертификат-->
+   <!--Наименование компании-->
+     <!--Номинал ЦБ-->
+	   <!--Дата ЦБ-->
+	     <!--Процент от номинала-->
+<Security>
+<!--Тип ЦБ: 1 - Акция, 2 - Облигация, 3 - Деп. сертификат-->
+   <!--Наименование компании-->
+     <!--Номинал ЦБ-->
+	   <!--Дата ЦБ-->
+	     <!--Процент от номинала-->
+<SecurityType>1</SecurityType>
+<!sdmgofkgmopdfp>
+<IssuerName>ОАО Лукойл</IssuerName>
+<!sdmgjodfbmodf>
+<!sdfmovbfgmohbfd>
+<Nominal>1000</Nominal>
+<SecurityDate>2018-03-25</SecurityDate>
+<Price>94.149</Price> 
+</Security>
+<Security>
+<SecurityType>2</SecurityType>
+<IssuerName>ПАО Роснефть</IssuerName>
+<Nominal>995.59</Nominal>
+<SecurityDate>2019-01-23</SecurityDate>
+<Price>101.00099999</Price>
+</Security>
+<Security>
+<SecurityType>3</SecurityType>
+<IssuerName>ЖЖЖ ПОПа</IssuerName>
+<Nominal>9.9</Nominal>
+<SecurityDate>2012-01-23</SecurityDate>
+<Price>10.9</Price>
+</Security>
+
+<!--здесь тоже можно-->
+<Security>
+<SecurityType>1</SecurityType>
+<IssuerName>мммоаоаао</IssuerName>
+<Nominal>2</Nominal>
+<SecurityDate>2041-01-23</SecurityDate>
+<Price>200000</Price>
+</Security>
+
+
+      </SecurityList>
