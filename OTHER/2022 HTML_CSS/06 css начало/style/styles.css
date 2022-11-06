@@ -1,0 +1,12 @@
+p {
+    background-color: aquamarine !important; /* !important делает наивысший приоритет */
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    width: 2000px;
+    font-weight: 1000;
+    height: 100px;
+    text-transform: uppercase;
+    text-align: center;
+    color: blueviolet;
+}

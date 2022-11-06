@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> веб формы </title>
+        <meta charset="utf-8">
+    </head>
+    <body> 
+        <!-- веб форма это и отправить комментарий и подгрузить файл и прочее-->
+        <form action="./" method=""> <!-- есть обязательный атрибут action - куда будут отправлены данные после нажатия кнопки отправить принимает путь 
+            есть два метода GET и POST 
+            всё это определяется "программистом" по серверной части -->
+
+
+            <!-- тип задаёт для чего было создано поле 
+            maxlength="ЧИСЛО" наибольшее количество символов
+            value="тиекст" то что будет вбито изначально
+            placeholder не вбивается но показывается
+            type password делает звёздочки точечки не показывает в общем вбиваемый текст
+        -->
+            <input type="text" name="namePerson" value="ааа">
+            <input type="text" name="fPerson" placeholder="ааа">
+            <input type="password" name="pw">
+            <br>
+            <input type="reset" name="rese"> <!-- обнуляет все вбитые поля -->
+            <input type="submit" name="sub" value="ОТПРАВИТЬ"> <!-- value кнопку пишет -->
+            <br>
+            ЧТО-ТО <input type = "checkbox" name = "chto-to" value="chto-to">
+            ЧТО-ТО ЕЩЁ <input type = "checkbox" name = "chto-to" value="one more"> <!-- отправляет -->
+            ??? <input type = "radio" name = "???" value="???">
+            !!! <input type = "radio" name = "???" value="!!!"> <!-- если имя у всех одинаковое то имзеняется выдача а в случае radio можно выбрапть только одну кнопку -->
+
+            <button type="submit"> 
+                ЕЩЁ ОДНА КНОПКА
+            </button>
+            <hr>
+            <label for="ap"> ЯБЛОКО </label> <input id = "ap" type="checkbox" name="!" value="apple"> <!-- label for ИДЕНТИФИКАТОР ID делает кликабельным текст по ID -->
+            
+            <textarea name="text" cols="40" rows="3" placeholder="!"></textarea> <!-- для тектовых полей и записи в них много текста -->
+
+
+            <!-- СПИСОК СО СТРЕЛОЧКОЙ ВЫБОРА -->
+            <select name="а" size="4" multiple> <!-- size расширяет высоту для прокрутки(показывает ЧИСЛО)--> <!-- multiple даёт возможность выделять с ctrl и shift -->
+                <option>1</option>
+                <option selected>2</option> <!-- делает выбор по умолчанию можно писать selected="selected" и selected=""-->
+                <option value="ETO TRI">3</option> <!-- будет отправляться "ETO TRI" -->
+                <option>4</option> <!-- на сервер будет отправляться 4 -->
+            </select>
+
+        </form>
+    </body>
+</html>
