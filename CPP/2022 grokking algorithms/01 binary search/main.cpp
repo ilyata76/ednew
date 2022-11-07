@@ -3,7 +3,7 @@
 
 // для начала простенький с индексом в int-массиве
 // самый классически
-int binary_search(std::vector<int> array, int item) {
+int binary_search(const std::vector<int>& array, int item) {
     size_t low = 0;
     size_t high = array.size() - 1;
 
@@ -24,15 +24,36 @@ int binary_search(std::vector<int> array, int item) {
     
 };
 
+template<typename T>
+int binary_search_t(const std::vector<T>& array, const T& item) {
+    size_t low = 0;
+    size_t high = array.size() - 1;
 
+    while (low <= high) {
+        size_t mid = (low + high) / 2;
+        T guess = array[mid];
+
+        if (guess < item)
+            low = mid + 1;
+        else if (guess > item)
+            high = mid - 1;
+        else 
+            return mid;
+    }
+
+    throw std::exception("<error>");
+}
 
 
 int main() {
     try {
         std::vector<int> ary = { 1, 2, 3, 4, 5, 6 };
+        int item = 3;
 
-        auto index = binary_search(ary, 6);
-
+        auto index = binary_search(ary, item);
+        std::cout << index;
+        
+        index = binary_search_t<int>(ary, item);
         std::cout << index;
 
         return 0;
