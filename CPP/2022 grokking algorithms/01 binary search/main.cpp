@@ -1,9 +1,15 @@
 #include <iostream>
 #include <vector>
 
+template<typename T>
+int binary_search(const std::vector<T>& array, 
+                  const T& item);
+
 // для начала простенький с индексом в int-массиве
 // самый классически
-int binary_search(const std::vector<int>& array, int item) {
+template<typename int>
+int binary_search(const std::vector<int>& array, 
+                  int item) {
     size_t low = 0;
     size_t high = array.size() - 1;
 
@@ -25,7 +31,8 @@ int binary_search(const std::vector<int>& array, int item) {
 };
 
 template<typename T>
-int binary_search_t(const std::vector<T>& array, const T& item) {
+int binary_search(const std::vector<T>& array, 
+                  const T& item) {
     size_t low = 0;
     size_t high = array.size() - 1;
 
@@ -47,13 +54,14 @@ int binary_search_t(const std::vector<T>& array, const T& item) {
 
 int main() {
     try {
-        std::vector<int> ary = { 1, 2, 3, 4, 5, 6 };
-        int item = 3;
+        std::vector<int> int_ary = { 1, 2, 3, 4, 5, 6 };
+        std::vector<double> double_ary = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
+        int item = 5;
 
-        auto index = binary_search(ary, item);
+        auto index = binary_search(int_ary, item);
         std::cout << index;
         
-        index = binary_search_t<int>(ary, item);
+        index = binary_search<double>(double_ary, static_cast<double>(item));
         std::cout << index;
 
         return 0;
