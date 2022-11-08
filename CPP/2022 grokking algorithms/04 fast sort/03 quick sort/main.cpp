@@ -6,11 +6,14 @@ std::vector<int> quickSort(std::vector<int> array) {
     if (size == 1 || size == 0)
         return array;
     else {
-        auto mid = (size-1)/2 ;
+        auto mid = (size - 1) / 2;
         auto elem = array[mid];
 
-        std::vector<int> less;
-        std::vector<int> greater;
+        std::vector<int> less; 
+        less.reserve(array.size() / 2 + 1);
+
+        std::vector<int> greater; 
+        greater.reserve(array.size() / 2 + 1);
 
         for (const auto& x : array) {
             if (x < elem)
@@ -28,10 +31,6 @@ std::vector<int> quickSort(std::vector<int> array) {
         return sorted_less;
 
     }
-
-
-
-
 }
 
 
