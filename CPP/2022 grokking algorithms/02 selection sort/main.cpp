@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// сначала для интиков
+// СЃРЅР°С‡Р°Р»Р° РґР»СЏ РёРЅС‚РёРєРѕРІ
 std::vector<int>::const_iterator findSmallest(std::vector<int>::const_iterator begin,
                                               std::vector<int>::const_iterator end) {
     int smallest = *begin;
@@ -17,7 +17,7 @@ std::vector<int>::const_iterator findSmallest(std::vector<int>::const_iterator b
     return it;
 }
 
-// сначала для интиков
+// СЃРЅР°С‡Р°Р»Р° РґР»СЏ РёРЅС‚РёРєРѕРІ
 std::vector<int> selectionSort(std::vector<int>& array) {
     std::vector<int> result;
     result.reserve(array.size());

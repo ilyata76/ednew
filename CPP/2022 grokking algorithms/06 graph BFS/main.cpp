@@ -21,7 +21,7 @@ std::string search(const std::string& name, const std::unordered_map<std::string
         std::string person = search_queue.front();
         search_queue.pop();
 
-        if (searched_persons.find(person) == searched_persons.end()) { // если он ещё не проверен
+        if (searched_persons.find(person) == searched_persons.end()) { // РµСЃР»Рё РѕРЅ РµС‰С‘ РЅРµ РїСЂРѕРІРµСЂРµРЅ
             
             if (is_seller(person)) {
                 return person;

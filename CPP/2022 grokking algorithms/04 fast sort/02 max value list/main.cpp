@@ -7,8 +7,8 @@ int maxValue(std::list<int>::const_iterator begin,
         return 0;
 
     auto value = *begin;
-    return std::max(value, maxValue(++begin, end)); // begin++ будет запаздывать
-                                                    // а ++begin будет менять вообще все аргументы в max
+    return std::max(value, maxValue(++begin, end)); // begin++ Р±СѓРґРµС‚ Р·Р°РїР°Р·РґС‹РІР°С‚СЊ
+                                                    // Р° ++begin Р±СѓРґРµС‚ РјРµРЅСЏС‚СЊ РІРѕРѕР±С‰Рµ РІСЃРµ Р°СЂРіСѓРјРµРЅС‚С‹ РІ max
 }
 
 int main() {

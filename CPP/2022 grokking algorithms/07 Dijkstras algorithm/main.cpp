@@ -6,70 +6,70 @@
 int main() {
     try {
         
-        using node = std::string; // узел
-        using node_cost_table = std::unordered_map<node, unsigned int>; // таблица, которая хранит от начальной точки стоимость пути до нод
-        using graph_table = std::unordered_map<node, node_cost_table>; // будет хранить сам граф - ноду и таблицу нод со стоимостями до следующих узов от текущей ноды
-        using parent_table = std::unordered_map<node, node>; // при нахождении оптимального пути будет хранить отношение между этими нодами
+        using node = std::string; // СѓР·РµР»
+        using node_cost_table = std::unordered_map<node, unsigned int>; // С‚Р°Р±Р»РёС†Р°, РєРѕС‚РѕСЂР°СЏ С…СЂР°РЅРёС‚ РѕС‚ РЅР°С‡Р°Р»СЊРЅРѕР№ С‚РѕС‡РєРё СЃС‚РѕРёРјРѕСЃС‚СЊ РїСѓС‚Рё РґРѕ РЅРѕРґ
+        using graph_table = std::unordered_map<node, node_cost_table>; // Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЊ СЃР°Рј РіСЂР°С„ - РЅРѕРґСѓ Рё С‚Р°Р±Р»РёС†Сѓ РЅРѕРґ СЃРѕ СЃС‚РѕРёРјРѕСЃС‚СЏРјРё РґРѕ СЃР»РµРґСѓСЋС‰РёС… СѓР·РѕРІ РѕС‚ С‚РµРєСѓС‰РµР№ РЅРѕРґС‹
+        using parent_table = std::unordered_map<node, node>; // РїСЂРё РЅР°С…РѕР¶РґРµРЅРёРё РѕРїС‚РёРјР°Р»СЊРЅРѕРіРѕ РїСѓС‚Рё Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЊ РѕС‚РЅРѕС€РµРЅРёРµ РјРµР¶РґСѓ СЌС‚РёРјРё РЅРѕРґР°РјРё
 
         graph_table graph;
         graph.reserve(4U);
-        graph.emplace("start", node_cost_table{ {"a", 6}, {"b", 2} }); // старт смотрит на a и на b
-        graph.emplace("a", node_cost_table{ {"finish", 1} }); // a смотрит на finish
-        graph.emplace("b", node_cost_table{ {"a", 3},{"finish", 5} }); // b - на a и на finish
+        graph.emplace("start", node_cost_table{ {"a", 6}, {"b", 2} }); // СЃС‚Р°СЂС‚ СЃРјРѕС‚СЂРёС‚ РЅР° a Рё РЅР° b
+        graph.emplace("a", node_cost_table{ {"finish", 1} }); // a СЃРјРѕС‚СЂРёС‚ РЅР° finish
+        graph.emplace("b", node_cost_table{ {"a", 3},{"finish", 5} }); // b - РЅР° a Рё РЅР° finish
         graph.emplace("finish", node_cost_table{}); // finish
 
-        // теперь заполним таблицу стоимость путей от начальной точки
+        // С‚РµРїРµСЂСЊ Р·Р°РїРѕР»РЅРёРј С‚Р°Р±Р»РёС†Сѓ СЃС‚РѕРёРјРѕСЃС‚СЊ РїСѓС‚РµР№ РѕС‚ РЅР°С‡Р°Р»СЊРЅРѕР№ С‚РѕС‡РєРё
         node_cost_table global_costs{ {"a", 6} ,{"b", 2}, {"finish", UINT32_MAX} };
 
-        // теперь создадим таблицу для отношения между узлами
+        // С‚РµРїРµСЂСЊ СЃРѕР·РґР°РґРёРј С‚Р°Р±Р»РёС†Сѓ РґР»СЏ РѕС‚РЅРѕС€РµРЅРёСЏ РјРµР¶РґСѓ СѓР·Р»Р°РјРё
         parent_table parents{ {"a", "start"}, {"b", "start"} };
 
-        // теперь будем запоминать узлы, которые были пройдены
+        // С‚РµРїРµСЂСЊ Р±СѓРґРµРј Р·Р°РїРѕРјРёРЅР°С‚СЊ СѓР·Р»С‹, РєРѕС‚РѕСЂС‹Рµ Р±С‹Р»Рё РїСЂРѕР№РґРµРЅС‹
         std::unordered_set<node> visited;
         visited.reserve(4u);
 
-        // создадим функцию поиска ближайшей непосещённой ноды
+        // СЃРѕР·РґР°РґРёРј С„СѓРЅРєС†РёСЋ РїРѕРёСЃРєР° Р±Р»РёР¶Р°Р№С€РµР№ РЅРµРїРѕСЃРµС‰С‘РЅРЅРѕР№ РЅРѕРґС‹
         auto findLowestCostNode = [&visited](node_cost_table costs) {
             auto lower_cost = UINT32_MAX;
             node lowest_cost_node{};
 
-            for (const auto& node_cst_table : costs) { // для всех данных таблиц нода-стоимость
+            for (const auto& node_cst_table : costs) { // РґР»СЏ РІСЃРµС… РґР°РЅРЅС‹С… С‚Р°Р±Р»РёС† РЅРѕРґР°-СЃС‚РѕРёРјРѕСЃС‚СЊ
                 node current_node = node_cst_table.first;
                 unsigned current_node_cost = node_cst_table.second;
 
-                if (visited.find(current_node) == visited.end()) { // если не посетили
-                    if (current_node_cost < lower_cost) { // и если стоимость посещения меньше текущей
-                        lower_cost = current_node_cost; // меняем
+                if (visited.find(current_node) == visited.end()) { // РµСЃР»Рё РЅРµ РїРѕСЃРµС‚РёР»Рё
+                    if (current_node_cost < lower_cost) { // Рё РµСЃР»Рё СЃС‚РѕРёРјРѕСЃС‚СЊ РїРѕСЃРµС‰РµРЅРёСЏ РјРµРЅСЊС€Рµ С‚РµРєСѓС‰РµР№
+                        lower_cost = current_node_cost; // РјРµРЅСЏРµРј
                         lowest_cost_node = current_node;
                     }
                 }
             }
-            return lowest_cost_node; // и возвращаем
+            return lowest_cost_node; // Рё РІРѕР·РІСЂР°С‰Р°РµРј
         };
 
-        auto current_node = findLowestCostNode(global_costs); // выделим самый ближайший узел
+        auto current_node = findLowestCostNode(global_costs); // РІС‹РґРµР»РёРј СЃР°РјС‹Р№ Р±Р»РёР¶Р°Р№С€РёР№ СѓР·РµР»
 
-        while (!current_node.empty()) { // пока мы не дошли до ноды без связей 
-            //(в данном случае это будет последний узел (т.е. пока все узлы не будут обойдены или не достигнем цели))
-            // т.е. если второй узел будет дороже, чем первый пройденный + его_сосед_финал, то и смысла заходить в него нет
+        while (!current_node.empty()) { // РїРѕРєР° РјС‹ РЅРµ РґРѕС€Р»Рё РґРѕ РЅРѕРґС‹ Р±РµР· СЃРІСЏР·РµР№ 
+            //(РІ РґР°РЅРЅРѕРј СЃР»СѓС‡Р°Рµ СЌС‚Рѕ Р±СѓРґРµС‚ РїРѕСЃР»РµРґРЅРёР№ СѓР·РµР» (С‚.Рµ. РїРѕРєР° РІСЃРµ СѓР·Р»С‹ РЅРµ Р±СѓРґСѓС‚ РѕР±РѕР№РґРµРЅС‹ РёР»Рё РЅРµ РґРѕСЃС‚РёРіРЅРµРј С†РµР»Рё))
+            // С‚.Рµ. РµСЃР»Рё РІС‚РѕСЂРѕР№ СѓР·РµР» Р±СѓРґРµС‚ РґРѕСЂРѕР¶Рµ, С‡РµРј РїРµСЂРІС‹Р№ РїСЂРѕР№РґРµРЅРЅС‹Р№ + РµРіРѕ_СЃРѕСЃРµРґ_С„РёРЅР°Р», С‚Рѕ Рё СЃРјС‹СЃР»Р° Р·Р°С…РѕРґРёС‚СЊ РІ РЅРµРіРѕ РЅРµС‚
 
-            auto current_cost = global_costs[current_node]; // текущая минимальная стоимость до узла
-            auto neighbours = graph[current_node]; // в глобальном графе определены связи
+            auto current_cost = global_costs[current_node]; // С‚РµРєСѓС‰Р°СЏ РјРёРЅРёРјР°Р»СЊРЅР°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ РґРѕ СѓР·Р»Р°
+            auto neighbours = graph[current_node]; // РІ РіР»РѕР±Р°Р»СЊРЅРѕРј РіСЂР°С„Рµ РѕРїСЂРµРґРµР»РµРЅС‹ СЃРІСЏР·Рё
 
             for (const auto& neighbour : neighbours) {
-                auto neighbour_new_global_cost = neighbour.second + current_cost; // текущая + до следующего
+                auto neighbour_new_global_cost = neighbour.second + current_cost; // С‚РµРєСѓС‰Р°СЏ + РґРѕ СЃР»РµРґСѓСЋС‰РµРіРѕ
                 node neighbour_node = neighbour.first;
 
-                if (neighbour_new_global_cost < global_costs[neighbour_node]) { // если стоимость ниже, чем от старта
+                if (neighbour_new_global_cost < global_costs[neighbour_node]) { // РµСЃР»Рё СЃС‚РѕРёРјРѕСЃС‚СЊ РЅРёР¶Рµ, С‡РµРј РѕС‚ СЃС‚Р°СЂС‚Р°
                     global_costs[neighbour_node] = neighbour_new_global_cost;
                     parents[neighbour_node] = current_node;
                 }
 
             }
-            // помечаем, что уже были здесь
+            // РїРѕРјРµС‡Р°РµРј, С‡С‚Рѕ СѓР¶Рµ Р±С‹Р»Рё Р·РґРµСЃСЊ
             visited.insert(current_node);
 
-            // и берём новый узел
+            // Рё Р±РµСЂС‘Рј РЅРѕРІС‹Р№ СѓР·РµР»
             current_node = findLowestCostNode(global_costs);
 
         }

@@ -5,8 +5,8 @@ template<typename T>
 int binary_search(const std::vector<T>& array, 
                   const T& item);
 
-// для начала простенький с индексом в int-массиве
-// самый классически
+// РґР»СЏ РЅР°С‡Р°Р»Р° РїСЂРѕСЃС‚РµРЅСЊРєРёР№ СЃ РёРЅРґРµРєСЃРѕРј РІ int-РјР°СЃСЃРёРІРµ
+// СЃР°РјС‹Р№ РєР»Р°СЃСЃРёС‡РµСЃРєРё
 template<typename int>
 int binary_search(const std::vector<int>& array, 
                   int item) {
