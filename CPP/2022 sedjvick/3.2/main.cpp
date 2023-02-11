@@ -42,9 +42,35 @@ void Eratosthenes() {
 //   967 971 977 983 991 997
 
 
+void Eratosthenes(int count) {
+    long long int i;
+    long long int* a = new long long int[count];
+
+    if (a == 0) {
+        std::cout << "out of memory" << std::endl; 
+        return;
+    }
+
+    for (i = 2; i < count; ++i)
+        a[i] = 1;                 
+
+    for (i = 2; i < count; ++i) {
+        if (a[i]) 
+            for (long long int j = i; i * j < count; ++j)
+                a[i * j] = 0; // 46k * 46k does not fit in an INT
+    }
+
+    for (i = 2; i < count; ++i) {
+        if (a[i])
+            std::cout << " " << i;
+    } std::cout << std::endl;
+
+}
+
 int main(int argc, char** argv) {
 
-    Eratosthenes();
+    // Eratosthenes();
+    Eratosthenes(std::atoi(argv[1]));
 
     return 0;
 }
