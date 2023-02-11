@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 
 static const int N = 1000;
 
@@ -67,10 +68,76 @@ void Eratosthenes(int count) {
 
 }
 
+
+int heads() {
+    return rand() < RAND_MAX / 2;
+}
+
+void headsOrTails(int argc, char** argv) {
+    int i, j, cnt = 0; 
+
+    int N = std::atoi(argv[1]), 
+        M = std::atoi(argv[2]);
+
+    int *f = new int[N+1];
+
+    for (j = 0; j <= N; ++j) {
+        f[j] = 0; // индексируем всё нулями
+    }
+
+    for (i = 0; i < M; i++, f[cnt]++ /*f[cnt] - это количество раз, сколько выпало cnt из M экспериментов*/) {
+        // i < M про количество экспериментов подбрасывания по N раз
+
+        // std::cout << cnt << " " << f[cnt] << "\n";
+        // 0 0
+        // 18 1
+        // 15 1
+        // 16 1
+        // 16 2
+        // 14 1
+        // 19 1
+        // 17 1
+        // 10 1
+        // 17 2
+        // 15 2
+        // 16 3
+        // 15 3
+        // 20 1
+        // 13 1
+        // 17 3
+        // 16 4
+        // 17 4
+        // 17 5
+        // 17 6
+
+        for (cnt = 0, j = 0; j <= N; j++) {
+
+            // j про количество подбрасываний N 
+
+            if (heads()) // если выпадает
+                cnt++; // то ++ количество выпавших. cnt < N всегда. cnt станет индексом, а после сделается f[cnt]++
+        }
+    }
+        std::cout << '\n';
+    // и вывод
+
+    for (j = 0; j <= N; j++) {
+        if (f[j] == 0) std::cout << ".";
+
+        for (i = 0; i < f[j]; i+= 10) 
+            std::cout << "*";
+
+        std::cout << std::endl;
+    }
+
+}
+
 int main(int argc, char** argv) {
 
     // Eratosthenes();
-    Eratosthenes(std::atoi(argv[1]));
+    // Eratosthenes(std::atoi(argv[1]));
+
+    headsOrTails(argc, argv);
 
     return 0;
 }
