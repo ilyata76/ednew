@@ -66,6 +66,8 @@ void Eratosthenes(int count) {
             std::cout << " " << i;
     } std::cout << std::endl;
 
+    delete[] a;
+
 }
 
 
@@ -169,6 +171,8 @@ void headsOrTails(int argc, char** argv) {
 // 30      :       .
 // 31      :       .
 // 32      :       .    
+
+    delete[] f;
 
 }
 
