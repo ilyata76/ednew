@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 int my_strlen1(char a[]) {
     int i;
@@ -40,7 +41,7 @@ int my_strcmp2(char* a, char* b) {
     return *(a - 1) - *(b - 1);
 }
 
-int main(int argc, char** argv) {
+void demonstrate() {
     char a[255] = "aaa\0";
     char b[255] = "bbb\0";
     std::cout << my_strlen1("abobus") << '\n'; // 6
@@ -56,5 +57,44 @@ int main(int argc, char** argv) {
     std::cout << b << '\n'; // bbbbbb
 
     std::cout << my_strcmp2(a , b); // 0
+}
+
+
+static const int N = 10000;
+
+int main(int argc, char** argv) {
+    // demonstrate();
+
+
+    // ищем вхождение слова в текст
+
+    int i; char t;
+    char a[N], *p = argv[1];
+
+    for (i = 0; i < N - 1; a[i] = t, i++)
+        if (!std::cin.get(t)) /*ctrl Z*/ {
+            break;
+        }
+
+    a[i] = 0;
+
+    for (i = 0; a[i] != 0; i++) {
+        int j;
+        for (j = 0; p[j] != 0; j++)
+            if (a[i + j] != p[j])
+                break;
+
+        if (p[j] == 0) 
+            std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    //asdgl;'jsdaf gk;ljdfg k;jdfg l;kcgl; dfg;l abob asdkjsadfgk jsadglk abob
+    //^Z
+    //43 68
+
+    // asdfkjsaflkabobaskdlfjnasdlk asdfklj abob
+    // ^Z
+    // 11 37
 
 }
