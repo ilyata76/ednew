@@ -28,7 +28,7 @@ const ApiHello = () => {
     }, []);
 
     return (   
-        <p>{message} from API</p>
+        <p>{message} from fastAPI</p>
     );
 };
 

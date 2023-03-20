@@ -6,6 +6,7 @@ import Home from "./Home"
 import NavBar from "./NavBar";
 
 import CanvasVanilla from "./CanvasVanilla";
+import KonvaCanvas from "./Konva";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       </Router>
 
       <CanvasVanilla/>
+      <KonvaCanvas/>
 
     </div>
   );
