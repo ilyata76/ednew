@@ -1,5 +1,9 @@
+from os.path import exists
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.exceptions import HTTPException
 
 app = FastAPI()
 
@@ -22,3 +26,10 @@ app.add_middleware(
 @app.get("/api")
 def read_root():
     return {"message": "Hello World"}
+
+@app.get(path="/image/{id}", tags=['images'], name='get Image', description='возвращает картинку амогуса')
+def get_image(id : int):
+    if exists(f'./image_{id}.png') : 
+        return FileResponse(f'./image_{id}.png')
+    else :
+        raise HTTPException(status_code=404, detail="User not found")
