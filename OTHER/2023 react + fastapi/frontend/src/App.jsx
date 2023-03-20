@@ -5,21 +5,21 @@ import Root from "./Root"
 import Home from "./Home"
 import NavBar from "./NavBar";
 
+import CanvasVanilla from "./CanvasVanilla";
+
 const App = () => {
   return (
     <div>
-    
-      <p>То, что меняться не будет</p>
-      
-
-      
       <Router>
         <NavBar />
+        <p>То, что меняться не будет</p>
         <Routes>
           <Route exact path="/" element={<Root/>}/>
           <Route path='/home' element={<Home/>} />
         </Routes>
       </Router>
+
+      <CanvasVanilla/>
 
     </div>
   );
