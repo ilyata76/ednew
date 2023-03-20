@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 
 import CanvasVanilla from "./CanvasVanilla";
 import KonvaCanvas from "./Konva";
+import Images from "./Images";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Root/>}/>
           <Route path='/home' element={<Home/>} />
+          <Route path='/images' element={<Images/>} />
         </Routes>
       </Router>
 
