@@ -1,36 +1,35 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
-import Root from "./Root"
-import Home from "./Home"
-import NavBar from "./NavBar";
-import Iframe from "./Iframe";
+import RouterAPI from "./routes/api/RouterAPI.jsx";
+import RouterRoot from "./routes/root/RouterRoot.jsx";
+import RouterCanvas from "./routes/canvas/RouterCanvas.jsx";
+import RouterIframe from "./routes/iframe/RouterIframe.jsx";
+import RouterCustomHook from './routes/hooks/RouterCustomHook';
+import RouterForm from "./routes/form/RouterForm.jsx";
+import RouterCSS from "./routes/css/RouterCSS.jsx";
 
-import CanvasVanilla from "./CanvasVanilla";
-import KonvaCanvas from "./Konva";
-import Images from "./Images";
+import NavBar from "./components/NavBar.jsx";
 
-const IFRAME = "<iframe src='mamedzuka/index.html' height=500px width=1600px>не поддерживается</iframe>";
+
+const IFRAME = "<iframe src='mamedzuka/index.html' height=500px width=600px>не поддерживается</iframe>";
 
 const App = () => {
-  return (
-    <div>
-      <Router>
-        <NavBar />
-        <p>То, что меняться не будет</p>
-        <Routes>
-          <Route exact path="/" element={<Root/>}/>
-          <Route path='/home' element={<Home/>} />
-          <Route path='/images' element={<Images/>} />
-          <Route path='/iframe' element={<Iframe iframe={IFRAME}/>} />
-        </Routes>
-      </Router>
-
-      <CanvasVanilla/>
-      <KonvaCanvas/>
-
-    </div>
-  );
+    return (
+        <Router>
+            <p>то, что не изменится</p>
+            <NavBar/>
+            <Routes>
+                <Route exact path="/" element={<RouterRoot/>}/>
+                <Route path="/api" element={<RouterAPI/>}/>
+                <Route path="/canvas" element={<RouterCanvas/>}/>
+                <Route path="/iframe" element={<RouterIframe iframe={IFRAME}/>}/>
+                <Route path="/hooks" element={<RouterCustomHook/>}/>
+                <Route path="/form" element={<RouterForm/>}/>
+                <Route path="/css" element={<RouterCSS/>}/>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

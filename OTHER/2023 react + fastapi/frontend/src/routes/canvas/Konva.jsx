@@ -7,7 +7,7 @@ const KonvaCanvas = () => {
             // Stage - is a div wrapper
             // Layer - is an actual 2d canvas element, so you can have several layers inside the stage
             // Rect and Circle are not DOM elements. They are 2d shapes on canvas
-        <div>
+        <React.Fragment>
             <h2>KONVA canvas</h2>
 
             <Stage width={100} height={100}>
@@ -17,7 +17,8 @@ const KonvaCanvas = () => {
             </Layer>
             </Stage>
             <p>---</p>
-        </div>
+        </React.Fragment>
+            // <> </> 
       );
 }
 

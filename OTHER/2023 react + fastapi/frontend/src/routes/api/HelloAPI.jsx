@@ -1,10 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 const INITIAL_STATE = "";
 
-const ApiHello = () => {
-    let [message, setMessage] = useState(INITIAL_STATE);
+const HelloAPI = () => {
+    let [message, setMessage] = useState(() => {return INITIAL_STATE;});
 
     const getWelcomeMessage = async () => {
       const requestOptions = {
@@ -23,13 +23,17 @@ const ApiHello = () => {
       }
     };
   
-    useEffect(() => {
+    // useEffect(() => {
+    //   getWelcomeMessage();
+    // }, []);
+
+    useLayoutEffect(() => {
       getWelcomeMessage();
     }, []);
 
     return (   
-        <p>{message} from fastAPI</p>
+        (Boolean(message) && <p>{message} from fastAPI</p>) || <p>а где ответ</p>
     );
 };
 
-export default ApiHello;
+export default HelloAPI;

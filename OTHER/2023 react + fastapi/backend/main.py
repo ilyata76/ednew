@@ -29,7 +29,7 @@ def read_root():
 
 @app.get(path="/image/{id}", tags=['images'], name='get Image', description='возвращает картинку амогуса')
 def get_image(id : int):
-    if exists(f'./image_{id}.png') : 
-        return FileResponse(f'./image_{id}.png')
+    if exists(f'./imgs/image_{id}.png') : 
+        return FileResponse(f'./imgs/image_{id}.png')
     else :
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Image not found")

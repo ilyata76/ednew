@@ -12,11 +12,11 @@ const CanvasVanilla = () => {
     });
 
     return (
-        <div>
+        <>
             <h2>Ванильный canvas</h2>
             <canvas ref={canvasRef} />
             <p>---</p>
-        </div>
+        </>
     );
 }
 

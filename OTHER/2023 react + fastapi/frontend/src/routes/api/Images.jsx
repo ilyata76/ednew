@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 
 const INITIAL_STATE = "";
-
 
 const Images = () => {
     let [image, setImage] = useState(INITIAL_STATE);
@@ -32,9 +32,9 @@ const Images = () => {
     return (
         <div>
             <h2>Загруженная картинка с сервера</h2>
-            <img src={image} alt="image"/>
+            <img src={image} alt="картиночка"/>
             <h2>просто обращение к серверу</h2>
-            <img src="/image/2" alt="image"/>
+            <img src="/image/2" alt="почему он ругается на слово имедж?"/>
         </div>
     );
 }
