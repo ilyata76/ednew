@@ -93,24 +93,22 @@ def head_on(costs, weights, M) :
             if weights[j] <= current_M:
                 second = costs[j]
             else :
-                result = max(result, first)
                 continue
 
             for k in range(N) :
-                current_M = current_M - weights[j]
-                                
+                current_M = M - weights[i] - weights[j]
+
                 if k == j or k == i :
-                    result = max(result, first + second)
                     continue
 
                 if weights[k] <= current_M :
                     third = costs[k]
                 else :
                     continue
-
+                
                 result = max(result, first + second + third)
 
-    print('\n\n\n HEAD ON RESULT', result)
+    print('\n\n\n HEAD ON RESULT', result if result > 0 else -1)
 
 if __name__ == '__main__' :
     costs = [int(i) for i in input().split()]  # стоимости
@@ -119,3 +117,8 @@ if __name__ == '__main__' :
     dynamic(costs, weights, M)
     greedy(costs, weights, M)
     head_on(costs, weights, M)
+
+
+# 9 9 10 11
+# 45 4 5 1
+# 10
